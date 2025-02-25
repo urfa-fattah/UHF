@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urfa Hasan Fattah - Digital Innovator</title>
+    <title>Urfa Hasan Fattah - Digital Visionary</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --gradient-1: #6b46c1; /* Deep Purple */
-            --gradient-2: #d53f8c; /* Magenta */
-            --gradient-3: #f6ad55; /* Warm Orange */
-            --dark-bg: #1a103d;   /* Cosmic Indigo */
-            --light-bg: #f9f7ff;  /* Soft Lavender */
-            --accent: #36d1dc;    /* Cyan Blue */
-            --text-light: #e9d8fd;
-            --text-dark: #2d1b4e;
+            --black: #0d0d1a;     /* Deep Black */
+            --blue-1: #1e3a8a;    /* Dark Blue */
+            --blue-2: #3b82f6;    /* Vibrant Blue */
+            --gradient-accent: #60a5fa; /* Light Blue */
+            --accent: #a5b4fc;    /* Soft Indigo */
+            --text-light: #e0e7ff;
+            --text-dark: #1e293b;
+            --card-bg: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -27,29 +27,31 @@
 
         body {
             font-family: 'Space Grotesk', sans-serif;
-            background: var(--dark-bg);
+            background: var(--black);
             color: var(--text-light);
             line-height: 1.7;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         body.light-mode {
-            background: var(--light-bg);
+            background: #f0f7ff;
             color: var(--text-dark);
         }
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-            padding: 0.8rem 1.5rem;
+            background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+            padding: 0.7rem 1.5rem;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .navbar-brand {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-light) !important;
             display: flex;
@@ -58,37 +60,38 @@
         }
 
         .navbar-brand img {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             border: 2px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: rotate(360deg);
         }
 
         .nav-link {
             color: var(--text-light) !important;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            font-size: 1rem;
         }
 
         .nav-link:hover {
             color: var(--accent) !important;
-            transform: scale(1.05);
+            transform: translateY(-2px);
         }
 
-        /* Custom Hamburger */
+        /* Hamburger */
         .navbar-toggler {
             border: none;
             padding: 0.5rem;
             background: transparent;
-            position: relative;
             width: 40px;
             height: 40px;
-        }
-
-        .navbar-toggler-icon {
-            display: none;
+            position: relative;
         }
 
         .hamburger {
@@ -99,7 +102,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
+            border-radius: 2px;
+            transition: all 0.4s ease;
         }
 
         .hamburger::before,
@@ -109,7 +113,8 @@
             width: 25px;
             height: 2px;
             background: var(--accent);
-            transition: all 0.3s ease;
+            border-radius: 2px;
+            transition: all 0.4s ease;
         }
 
         .hamburger::before {
@@ -138,7 +143,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            background: linear-gradient(135deg, var(--black), var(--blue-1), var(--blue-2));
             position: relative;
             overflow: hidden;
         }
@@ -147,88 +152,130 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             text-align: center;
-            padding: 2rem;
-            z-index: 1;
+            padding: 3rem;
+            z-index: 2;
             max-width: 1000px;
         }
 
         .hero img {
-            width: 220px;
-            height: 220px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
-            border: 5px solid var(--accent);
+            border: 6px solid var(--accent);
             margin-bottom: 2rem;
             object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .hero img:hover {
+            transform: rotate(10deg) scale(1.05);
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4.8rem;
             font-weight: 700;
-            background: linear-gradient(to right, var(--text-light), var(--accent));
+            background: linear-gradient(to right, var(--text-light), var(--gradient-accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.6rem;
             font-weight: 300;
-            margin: 1rem 0;
+            opacity: 0.9;
         }
 
         /* Sections */
         section {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, var(--dark-bg), rgba(107, 70, 193, 0.1));
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(to right, var(--gradient-2), var(--gradient-3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* Gallery */
-        .gallery-container {
-            overflow: hidden;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 7rem 2rem;
+            background: linear-gradient(180deg, var(--black), rgba(30, 58, 138, 0.2));
             position: relative;
         }
 
-        .gallery {
-            display: flex;
-            animation: scroll 25s linear infinite;
+        .section-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(to right, var(--blue-2), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
         }
 
-        .gallery img {
-            width: 280px;
-            height: 220px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
             object-fit: cover;
-            margin: 0 1rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
-        .gallery img:hover {
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item:hover img {
             transform: scale(1.1);
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .gallery-item::after {
+            content: 'Explore';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
         }
 
         /* Projects */
@@ -241,24 +288,24 @@
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(213, 63, 140, 0.1));
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(165, 180, 252, 0.1));
         }
 
         .project-card img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 15px;
         }
 
         .project-card p {
@@ -269,81 +316,84 @@
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .skill-card:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(246, 173, 85, 0.1), rgba(107, 70, 193, 0.1));
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(96, 165, 250, 0.1));
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .skill-card i {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--accent);
             margin-bottom: 1rem;
         }
 
-        /* Experience Section */
+        /* Experience */
         .experience-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .experience-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             padding: 2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            transition: all 0.4s ease;
         }
 
         .experience-card:hover {
             transform: translateY(-10px);
-            background: linear-gradient(135deg, rgba(213, 63, 140, 0.1), rgba(246, 173, 85, 0.1));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(165, 180, 252, 0.1));
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(to top, var(--gradient-1), var(--dark-bg));
-            padding: 3rem 2rem;
+            background: linear-gradient(to top, var(--blue-1), var(--black));
+            padding: 4rem 2rem;
             text-align: center;
         }
 
         .social-links a {
             color: var(--text-light);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 0 1.5rem;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             color: var(--accent);
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(10deg);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .navbar { padding: 0.6rem 1rem; }
+            .navbar { padding: 0.5rem 1rem; }
             .navbar-brand { font-size: 1.2rem; }
             .nav-link { font-size: 0.9rem; padding: 0.5rem !important; }
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.8rem; }
             .hero p { font-size: 1.2rem; }
-            .hero img { width: 150px; height: 150px; }
-            .section-title { font-size: 2rem; }
-            .gallery img { width: 200px; height: 150px; }
+            .hero img { width: 180px; height: 180px; }
+            .section-title { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item img { height: 200px; }
             .project-grid, .skills-grid, .experience-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -376,28 +426,31 @@
         <div class="hero-content">
             <img src="image1.jpg" alt="Urfa Hasan Fattah">
             <h1>Urfa Hasan Fattah</h1>
-            <p>Digital Innovator | <span id="dynamic-text">Programmer</span></p>
-            <p>Turning ideas into interactive realities with code and creativity</p>
+            <p>Digital Visionary | <span id="dynamic-text">Programmer</span></p>
+            <p>Architecting the future with code, design, and innovation</p>
         </div>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery">
-        <h2 class="section-title">Visual Creations</h2>
-        <div class="gallery-container">
-            <div class="gallery">
+        <h2 class="section-title">Creative Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
                 <img src="image1.jpg" alt="Digital Art">
+            </div>
+            <div class="gallery-item">
                 <img src="image2.jpg" alt="Web Design">
+            </div>
+            <div class="gallery-item">
                 <img src="image3.jpg" alt="Code Snap">
+            </div>
+            <div class="gallery-item">
                 <img src="image4.jpg" alt="UI Concept">
+            </div>
+            <div class="gallery-item">
                 <img src="image5.jpg" alt="Creative Work">
-                <img src="image6.jpg" alt="Inspiration">
-                <!-- Duplicates -->
-                <img src="image1.jpg" alt="Digital Art">
-                <img src="image2.jpg" alt="Web Design">
-                <img src="image3.jpg" alt="Code Snap">
-                <img src="image4.jpg" alt="UI Concept">
-                <img src="image5.jpg" alt="Creative Work">
+            </div>
+            <div class="gallery-item">
                 <img src="image6.jpg" alt="Inspiration">
             </div>
         </div>
@@ -410,31 +463,31 @@
             <div class="project-card">
                 <a href="https://our-logger.vercel.app/" target="_blank">
                     <img src="project1.jpg" alt="Our Logger">
-                    <p>Our Logger - Modern logging solution</p>
+                    <p>Our Logger - Advanced Logging Tool</p>
                 </a>
             </div>
             <div class="project-card">
                 <a href="https://happy-birthday-rifat.vercel.app/" target="_blank">
                     <img src="project2.jpg" alt="Happy Birthday Rifat">
-                    <p>Happy Birthday Rifat - Celebration app</p>
+                    <p>Happy Birthday Rifat - Celebration App</p>
                 </a>
             </div>
             <div class="project-card">
                 <a href="https://eid-mubarak-phi.vercel.app/" target="_blank">
                     <img src="project3.jpg" alt="Eid Mubarak Phi">
-                    <p>Eid Mubarak Phi - Festive greeting</p>
+                    <p>Eid Mubarak Phi - Festive Greeting</p>
                 </a>
             </div>
             <div class="project-card">
                 <a href="https://prettymoons.netlify.app/" target="_blank">
                     <img src="project4.jpg" alt="Pretty Moons">
-                    <p>Pretty Moons - Visual experience</p>
+                    <p>Pretty Moons - Visual Exploration</p>
                 </a>
             </div>
             <div class="project-card">
                 <a href="https://amiciforever.netlify.app/" target="_blank">
                     <img src="project5.jpg" alt="Amici Forever">
-                    <p>Amici Forever - Social platform</p>
+                    <p>Amici Forever - Community Platform</p>
                 </a>
             </div>
         </div>
@@ -442,7 +495,7 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Technical Expertise</h2>
+        <h2 class="section-title">Technical Arsenal</h2>
         <div class="skills-grid">
             <div class="skill-card">
                 <i class="fab fa-html5"></i>
@@ -469,29 +522,29 @@
 
     <!-- Experience Section -->
     <section id="experience">
-        <h2 class="section-title">Journey & Milestones</h2>
+        <h2 class="section-title">My Journey</h2>
         <div class="experience-grid">
             <div class="experience-card">
                 <h3>Web Developer</h3>
                 <p>2022 - Present</p>
-                <p>Designing and building responsive web applications with a focus on user experience.</p>
+                <p>Crafting responsive, user-centric web solutions with modern technologies.</p>
             </div>
             <div class="experience-card">
-                <h3>Freelance Coder</h3>
+                <h3>Freelance Developer</h3>
                 <p>2020 - 2022</p>
-                <p>Delivered custom solutions for clients, specializing in front-end and back-end development.</p>
+                <p>Built custom applications for diverse clients, focusing on performance and UX.</p>
             </div>
             <div class="experience-card">
-                <h3>Learning Enthusiast</h3>
+                <h3>Tech Enthusiast</h3>
                 <p>2018 - Present</p>
-                <p>Continuously exploring new technologies, frameworks, and programming paradigms.</p>
+                <p>Exploring cutting-edge tools, frameworks, and coding practices.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title">Get in Touch</h2>
+        <h2 class="section-title">Connect With Me</h2>
         <div class="container text-center">
             <p><i class="fas fa-envelope"></i> <a href="mailto:uhf3.1415@gmail.com" style="color: var(--accent);">uhf3.1415@gmail.com</a></p>
             <p><i class="fas fa-phone"></i> +8801618928421</p>
@@ -507,7 +560,7 @@
             <a href="https://www.instagram.com/urfahasanfattah" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/share/17qYgZ7vWM/" target="_blank"><i class="fab fa-facebook"></i></a>
         </div>
-        <p class="mt-3">© 2025 Urfa Hasan Fattah. Crafted with Innovation.</p>
+        <p class="mt-3">© 2025 Urfa Hasan Fattah. Designed with Vision.</p>
     </footer>
 
     <!-- Scripts -->
@@ -524,7 +577,7 @@
         });
 
         // Dynamic Text
-        const words = ["Programmer", "Innovator", "Designer", "Creator"];
+        const words = ["Programmer", "Designer", "Innovator", "Visionary"];
         let wordIndex = 0;
         const dynamicText = document.getElementById('dynamic-text');
 
@@ -537,12 +590,12 @@
                 if (charIndex < currentWord.length) {
                     dynamicText.textContent += currentWord[charIndex];
                     charIndex++;
-                    setTimeout(addChar, 100);
+                    setTimeout(addChar, 80);
                 } else {
                     setTimeout(() => {
                         wordIndex = (wordIndex + 1) % words.length;
                         typeWord();
-                    }, 2000);
+                    }, 1500);
                 }
             }
             addChar();
