@@ -1,607 +1,561 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urfa Hasan Fattah - Digital Visionary</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Urfa Hasan Fattah | Digital Visionary & Developer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        midnight: '#020617', 
+                        navy: '#0f172a',     
+                        primary: '#3b82f6',  
+                        cyan: '#06b6d4',     
+                        glass: 'rgba(15, 23, 42, 0.6)',
+                    },
+                    backgroundImage: {
+                        'gradient-dark': 'linear-gradient(to bottom, #020617, #0f172a)',
+                    },
+                    animation: {
+                        'cursor': 'cursor .75s step-end infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob-slow': 'blob 10s infinite',
+                    },
+                    keyframes: {
+                        cursor: {
+                            '0%, 100%': { borderColor: 'transparent' },
+                            '50%': { borderColor: '#3b82f6' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --black: #0d0d1a;     /* Deep Black */
-            --blue-1: #1e3a8a;    /* Dark Blue */
-            --blue-2: #3b82f6;    /* Vibrant Blue */
-            --gradient-accent: #60a5fa; /* Light Blue */
-            --accent: #a5b4fc;    /* Soft Indigo */
-            --text-light: #e0e7ff;
-            --text-dark: #1e293b;
-            --card-bg: rgba(255, 255, 255, 0.05);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--black);
-            color: var(--text-light);
-            line-height: 1.7;
+        body { 
+            background-color: #020617; 
+            color: #e2e8f0; 
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            cursor: none; /* Hide default cursor */
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        body.light-mode {
-            background: #f0f7ff;
-            color: var(--text-dark);
-        }
-
-        /* Navbar */
-        .navbar {
-            background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
-            padding: 0.7rem 1.5rem;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-brand {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-light) !important;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            transition: transform 0.3s ease;
-        }
-
-        .navbar-brand:hover img {
-            transform: rotate(360deg);
-        }
-
-        .nav-link {
-            color: var(--text-light) !important;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--accent) !important;
-            transform: translateY(-2px);
-        }
-
-        /* Hamburger */
-        .navbar-toggler {
-            border: none;
-            padding: 0.5rem;
-            background: transparent;
-            width: 40px;
-            height: 40px;
-            position: relative;
-        }
-
-        .hamburger {
-            width: 25px;
-            height: 2px;
-            background: var(--accent);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 2px;
-            transition: all 0.4s ease;
-        }
-
-        .hamburger::before,
-        .hamburger::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 2px;
-            background: var(--accent);
-            border-radius: 2px;
-            transition: all 0.4s ease;
-        }
-
-        .hamburger::before {
-            top: -8px;
-        }
-
-        .hamburger::after {
-            bottom: -8px;
-        }
-
-        .navbar-toggler[aria-expanded="true"] .hamburger {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        .navbar-toggler[aria-expanded="true"] .hamburger::before {
-            transform: translateY(8px) rotate(-90deg);
-        }
-
-        .navbar-toggler[aria-expanded="true"] .hamburger::after {
-            opacity: 0;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--black), var(--blue-1), var(--blue-2));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            text-align: center;
-            padding: 3rem;
-            z-index: 2;
-            max-width: 1000px;
-        }
-
-        .hero img {
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            border: 6px solid var(--accent);
-            margin-bottom: 2rem;
-            object-fit: cover;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s ease;
-        }
-
-        .hero img:hover {
-            transform: rotate(10deg) scale(1.05);
-        }
-
-        .hero h1 {
-            font-size: 4.8rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--text-light), var(--gradient-accent));
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #60a5fa, #a855f7);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.6rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* Sections */
-        section {
-            padding: 7rem 2rem;
-            background: linear-gradient(180deg, var(--black), rgba(30, 58, 138, 0.2));
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
-            background: linear-gradient(to right, var(--blue-2), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item::after {
-            content: 'Explore';
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--accent);
-            font-size: 1.5rem;
-            font-weight: 500;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        /* Projects */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 1.5rem;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(165, 180, 252, 0.1));
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .project-card p {
-            margin: 1rem 0 0;
-            font-weight: 500;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .skill-card:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(96, 165, 250, 0.1));
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .skill-card i {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Experience */
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .experience-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            transition: all 0.4s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-10px);
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(165, 180, 252, 0.1));
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(to top, var(--blue-1), var(--black));
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .social-links a {
-            color: var(--text-light);
-            font-size: 2.2rem;
-            margin: 0 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar { padding: 0.5rem 1rem; }
-            .navbar-brand { font-size: 1.2rem; }
-            .nav-link { font-size: 0.9rem; padding: 0.5rem !important; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero p { font-size: 1.2rem; }
-            .hero img { width: 180px; height: 180px; }
-            .section-title { font-size: 2.2rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-item img { height: 200px; }
-            .project-grid, .skills-grid, .experience-grid { grid-template-columns: 1fr; }
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="me.png" alt="Logo"> UHF
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="root"></div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="image1.jpg" alt="Urfa Hasan Fattah">
-            <h1>Urfa Hasan Fattah</h1>
-            <p>Digital Visionary | <span id="dynamic-text">Programmer</span></p>
-            <p>Architecting the future with code, design, and innovation</p>
-        </div>
-    </section>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const { motion, useScroll, useSpring, AnimatePresence, useTransform } = window.Motion;
 
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <h2 class="section-title">Creative Gallery</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="image1.jpg" alt="Digital Art">
-            </div>
-            <div class="gallery-item">
-                <img src="image2.jpg" alt="Web Design">
-            </div>
-            <div class="gallery-item">
-                <img src="image3.jpg" alt="Code Snap">
-            </div>
-            <div class="gallery-item">
-                <img src="image4.jpg" alt="UI Concept">
-            </div>
-            <div class="gallery-item">
-                <img src="image5.jpg" alt="Creative Work">
-            </div>
-            <div class="gallery-item">
-                <img src="image6.jpg" alt="Inspiration">
-            </div>
-        </div>
-    </section>
+        // --- Data (Expanded and Detailed) ---
+        const NAV_LINKS = [
+            { name: 'Projects', href: '#projects' },
+            { name: 'Skills', href: '#skills' },
+            { name: 'Education', href: '#education' },
+            { name: 'Contact', href: '#contact' },
+        ];
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">My Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <a href="https://our-logger.vercel.app/" target="_blank">
-                    <img src="project1.jpg" alt="Our Logger">
-                    <p>Our Logger - Advanced Logging Tool</p>
-                </a>
-            </div>
-            <div class="project-card">
-                <a href="https://happy-birthday-rifat.vercel.app/" target="_blank">
-                    <img src="project2.jpg" alt="Happy Birthday Rifat">
-                    <p>Happy Birthday Rifat - Celebration App</p>
-                </a>
-            </div>
-            <div class="project-card">
-                <a href="https://eid-mubarak-phi.vercel.app/" target="_blank">
-                    <img src="project3.jpg" alt="Eid Mubarak Phi">
-                    <p>Eid Mubarak Phi - Festive Greeting</p>
-                </a>
-            </div>
-            <div class="project-card">
-                <a href="https://prettymoons.netlify.app/" target="_blank">
-                    <img src="project4.jpg" alt="Pretty Moons">
-                    <p>Pretty Moons - Visual Exploration</p>
-                </a>
-            </div>
-            <div class="project-card">
-                <a href="https://amiciforever.netlify.app/" target="_blank">
-                    <img src="project5.jpg" alt="Amici Forever">
-                    <p>Amici Forever - Community Platform</p>
-                </a>
-            </div>
-        </div>
-    </section>
+        const EDUCATION = [
+            { degree: "B.Sc. in Computer Science", school: "National University", year: "2020 - Present", desc: "Specializing in Software Engineering and Artificial Intelligence. Leading the university coding club.", icon: "fa-graduation-cap" },
+            { degree: "Higher Secondary Certificate", school: "Dhaka College", year: "2018 - 2020", desc: "Science Group. Achieved GPA 5.00. Focus on Physics and Mathematics.", icon: "fa-university" }
+        ];
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Technical Arsenal</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fab fa-html5"></i>
-                <p>HTML5</p>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-css3-alt"></i>
-                <p>CSS3</p>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-js"></i>
-                <p>JavaScript</p>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-python"></i>
-                <p>Python</p>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-react"></i>
-                <p>React</p>
-            </div>
-        </div>
-    </section>
+        const TERMINAL_LOGS = [
+            { cmd: "npm install knowledge", output: "Added 15 packages." },
+            { cmd: "init stack --verbose", output: "Loading React... Done.\nLoading Node.js... Done.\nLoading Python... Done." },
+            { cmd: "git commit -m 'UI/UX Masterpiece'", output: "[main 8a2b3c] UI/UX Masterpiece" },
+            { cmd: "echo 'Ready to build.'", output: "Ready to build." }
+        ];
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">My Journey</h2>
-        <div class="experience-grid">
-            <div class="experience-card">
-                <h3>Web Developer</h3>
-                <p>2022 - Present</p>
-                <p>Crafting responsive, user-centric web solutions with modern technologies.</p>
-            </div>
-            <div class="experience-card">
-                <h3>Freelance Developer</h3>
-                <p>2020 - 2022</p>
-                <p>Built custom applications for diverse clients, focusing on performance and UX.</p>
-            </div>
-            <div class="experience-card">
-                <h3>Tech Enthusiast</h3>
-                <p>2018 - Present</p>
-                <p>Exploring cutting-edge tools, frameworks, and coding practices.</p>
-            </div>
-        </div>
-    </section>
+        const SKILLS_DATA = {
+            Frontend: ["React", "Next.js", "JavaScript (ES6+)", "Tailwind CSS", "Framer Motion", "Redux/Zustand", "GSAP"],
+            Backend: ["Node.js", "Express", "Python", "REST APIs", "MongoDB", "PostgreSQL", "Firebase"],
+            Tools: ["Git/GitHub", "Docker", "VS Code", "Vercel", "Netlify", "Figma", "NPM/Yarn", "Linux CLI"]
+        };
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Connect With Me</h2>
-        <div class="container text-center">
-            <p><i class="fas fa-envelope"></i> <a href="mailto:uhf3.1415@gmail.com" style="color: var(--accent);">uhf3.1415@gmail.com</a></p>
-            <p><i class="fas fa-phone"></i> +8801618928421</p>
-            <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
-        </div>
-    </section>
+        const PROJECTS = [
+            { id: 1, title: "Our Logger", tag: "System Tool", img: "project1.jpg", desc: "Advanced logging and monitoring tool built for scalable production environments. Focus on real-time data visualization and performance.", stack: ["React", "Node.js", "MongoDB", "Socket.io"], link: "https://our-logger.vercel.app/" },
+            { id: 2, title: "Pretty Moons", tag: "Creative Dev", img: "project4.jpg", desc: "A visually stunning WebGL and Three.js exploration demonstrating advanced browser rendering capabilities and animations.", stack: ["Three.js", "CSS3", "Animation", "Vanilla JS"], link: "https://prettymoons.netlify.app/" },
+            { id: 3, title: "Amici Forever", tag: "Social App", img: "project5.jpg", desc: "A community platform featuring real-time chat, profile customization, and gamified achievements using Firebase backend.", stack: ["React", "Firebase", "Tailwind", "Zustand"], link: "https://amiciforever.netlify.app/" },
+            { id: 4, title: "Interactive Greeting", tag: "Interactive", img: "project3.jpg", desc: "A custom festive greeting built with GSAP for complex timeline-based animations and interactive element sequencing.", stack: ["JS", "GSAP", "HTML5", "CSS3"], link: "https://eid-mubarak-phi.vercel.app/" },
+        ];
+        
+        // --- Components ---
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/urfa-fattah" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/urfahasanfattah" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/17qYgZ7vWM/" target="_blank"><i class="fab fa-facebook"></i></a>
-        </div>
-        <p class="mt-3">© 2025 Urfa Hasan Fattah. Designed with Vision.</p>
-    </footer>
+        // 1. Global Interactive Cursor
+        const CursorBlob = () => {
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+            useEffect(() => {
+                const handleMouseMove = (event) => {
+                    setMousePos({ x: event.clientX, y: event.clientY });
+                };
+                window.addEventListener('mousemove', handleMouseMove);
+                return () => window.removeEventListener('mousemove', handleMouseMove);
+            }, []);
 
-        // Dynamic Text
-        const words = ["Programmer", "Designer", "Innovator", "Visionary"];
-        let wordIndex = 0;
-        const dynamicText = document.getElementById('dynamic-text');
+            return (
+                <motion.div
+                    className="fixed w-10 h-10 rounded-full bg-cyan/50 pointer-events-none mix-blend-screen -z-0"
+                    animate={{ x: mousePos.x - 20, y: mousePos.y - 20 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 10 }}
+                    style={{ filter: 'blur(15px)' }}
+                />
+            );
+        };
 
-        function typeWord() {
-            const currentWord = words[wordIndex];
-            let charIndex = 0;
-            dynamicText.textContent = '';
+        // 2. Navbar (Kept clean)
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            const [isOpen, setIsOpen] = useState(false);
 
-            function addChar() {
-                if (charIndex < currentWord.length) {
-                    dynamicText.textContent += currentWord[charIndex];
-                    charIndex++;
-                    setTimeout(addChar, 80);
-                } else {
-                    setTimeout(() => {
-                        wordIndex = (wordIndex + 1) % words.length;
-                        typeWord();
-                    }, 1500);
-                }
-            }
-            addChar();
-        }
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
 
-        document.addEventListener('DOMContentLoaded', typeWord);
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'nav-glass py-4 bg-midnight/90' : 'bg-transparent py-6'}`}>
+                    <div className="container mx-auto px-6 flex justify-between items-center">
+                        <a href="#home" className="text-2xl font-bold tracking-tighter flex items-center gap-2 cursor-pointer">
+                            <span className="text-primary">&lt;</span>
+                            <span className="text-white">UHF</span>
+                            <span className="text-primary">/&gt;</span>
+                        </a>
+                        <div className="hidden md:flex gap-8">
+                            {NAV_LINKS.map(link => (
+                                <a key={link.name} href={link.href} className="text-sm font-medium text-slate-400 hover:text-primary transition-colors uppercase tracking-widest cursor-pointer">
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+                        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white text-xl cursor-pointer">
+                            <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                        </button>
+                    </div>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="md:hidden bg-navy border-b border-white/10 overflow-hidden">
+                                <div className="flex flex-col p-6 gap-4">
+                                    {NAV_LINKS.map(link => (
+                                        <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-slate-300 hover:text-primary py-2 block text-center">
+                                            {link.name}
+                                        </a>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </nav>
+            );
+        };
+
+        // 3. Hero Section with Mouse Tilt
+        const Hero = () => {
+            const containerRef = useRef(null);
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+            useEffect(() => {
+                const handleMouseMove = (e) => {
+                    if (!containerRef.current) return;
+                    const rect = containerRef.current.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const x = (e.clientX - centerX) / 50; // Reduced sensitivity
+                    const y = (e.clientY - centerY) / 50; 
+                    setMousePos({ x, y });
+                };
+                window.addEventListener('mousemove', handleMouseMove);
+                return () => window.removeEventListener('mousemove', handleMouseMove);
+            }, []);
+
+            return (
+                <section id="home" className="min-h-screen relative flex items-center pt-20 overflow-hidden bg-gradient-dark" ref={containerRef}>
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] animate-blob-slow"></div>
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan/5 rounded-full blur-[100px] animate-blob-slow" style={{animationDelay: '-5s'}}></div>
+
+                    <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1 }}
+                            style={{ rotateX: -mousePos.y, rotateY: mousePos.x, transformStyle: 'preserve-3d' }}
+                            className="perspective-3d"
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono mb-6">
+                                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                                Digital Visionary
+                            </div>
+                            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-white">
+                                Urfa Hasan <br />
+                                <span className="text-gradient-blue">Fattah</span>
+                            </h1>
+                            <p className="text-slate-400 text-lg md:text-xl mb-8 max-w-lg leading-relaxed">
+                                Architecting high-performance web experiences. 
+                                Blending <span className="text-white">technical mastery</span> with <span className="text-white">creative design</span>.
+                            </p>
+                            
+                            <div className="flex gap-4">
+                                <a href="#projects" className="px-8 py-3 bg-primary hover:bg-blue-600 text-white font-medium rounded-lg transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] cursor-pointer">
+                                    View Projects
+                                </a>
+                                <a href="#contact" className="px-8 py-3 border border-white/10 hover:border-white/30 text-white font-medium rounded-lg transition-all bg-white/5 hover:bg-white/10 cursor-pointer">
+                                    Contact Me
+                                </a>
+                            </div>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                            style={{ rotateX: mousePos.y * 0.5, rotateY: -mousePos.x * 0.5, transformStyle: 'preserve-3d' }}
+                            className="relative hidden lg:block perspective-3d"
+                        >
+                            <div className="relative w-96 h-96 mx-auto">
+                                <img src="image1.jpg" alt="Profile" className="relative z-10 w-full h-full object-cover rounded-3xl border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" />
+                                <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl opacity-30 transform -translate-x-2 translate-y-2"></div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        // 4. Interactive Project Spotlight
+        const ProjectSpotlight = () => {
+            const [activeProject, setActiveProject] = useState(PROJECTS[0]);
+
+            const ProjectPreview = ({ project }) => (
+                <motion.div 
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="h-full flex flex-col"
+                >
+                    <div className="h-2/3 overflow-hidden rounded-xl mb-4 relative">
+                        <img src={project.img} alt={project.title} className="w-full h-full object-cover transition-all duration-500 hover:scale-105" />
+                        <span className="absolute top-3 left-3 px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-xs font-mono text-cyan-400 border border-white/10">
+                            {project.tag}
+                        </span>
+                    </div>
+                    <h3 className="text-3xl font-bold mb-3 text-white">{project.title}</h3>
+                    <p className="text-slate-400 mb-4 flex-grow">{project.desc}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {project.stack.map((tech, i) => (
+                            <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-xs text-slate-300">{tech}</span>
+                        ))}
+                    </div>
+                    <a href={project.link} target="_blank" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-medium border border-primary/50 px-4 py-2 rounded-lg cursor-pointer">
+                        View Live <i className="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </motion.div>
+            );
+
+            return (
+                <section id="projects" className="py-24 bg-navy">
+                    <div className="container mx-auto px-6">
+                        <h2 className="text-4xl font-bold mb-16 text-center">Interactive <span className="text-gradient-blue">Projects</span></h2>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 glass-panel rounded-3xl p-6">
+                            
+                            {/* Spotlight Preview (2/3 width) */}
+                            <div className="lg:col-span-2 h-[600px] p-4 bg-midnight/50 rounded-2xl border border-white/5 relative">
+                                <AnimatePresence mode="wait">
+                                    <ProjectPreview project={activeProject} />
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Project List (1/3 width) */}
+                            <div className="lg:col-span-1 h-[600px] overflow-y-auto space-y-4">
+                                {PROJECTS.map((project) => (
+                                    <motion.div
+                                        key={project.id}
+                                        onMouseEnter={() => setActiveProject(project)}
+                                        className={`glass-panel p-4 rounded-xl cursor-pointer transition-all duration-300 ${activeProject.id === project.id ? 'bg-primary/20 border-primary shadow-lg' : 'hover:bg-white/10'}`}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        <h4 className="text-lg font-bold">{project.title}</h4>
+                                        <p className="text-xs text-slate-400 mt-1">{project.tag} | {project.stack[0]}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // 5. Dynamic Skills Filter
+        const SkillsFilter = () => {
+            const [activeCategory, setActiveCategory] = useState('Frontend');
+            const skills = SKILLS_DATA[activeCategory];
+
+            return (
+                <section id="skills" className="py-24 bg-gradient-dark">
+                    <div className="container mx-auto px-6">
+                        <h2 className="text-4xl font-bold text-center mb-12">Technical <span className="text-gradient-blue">Arsenal</span></h2>
+
+                        <div className="max-w-xl mx-auto glass-panel rounded-full p-1 flex justify-around mb-12">
+                            {Object.keys(SKILLS_DATA).map((category) => (
+                                <motion.button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`relative z-10 px-6 py-2 rounded-full font-medium transition-colors cursor-pointer ${activeCategory === category ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+                                >
+                                    {category}
+                                    {activeCategory === category && (
+                                        <motion.div
+                                            layoutId="activePill"
+                                            className="absolute inset-0 bg-primary rounded-full -z-10"
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                    )}
+                                </motion.button>
+                            ))}
+                        </div>
+
+                        <motion.div 
+                            key={activeCategory}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="max-w-4xl mx-auto glass-panel p-10 rounded-3xl"
+                        >
+                            <div className="flex flex-wrap gap-4 justify-center">
+                                {skills.map((skill, i) => (
+                                    <motion.span 
+                                        key={skill}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: i * 0.05 }}
+                                        className="px-5 py-2 bg-navy rounded-lg text-sm font-mono text-slate-300 hover:text-primary hover:shadow-lg hover:shadow-primary/10 transition-all border border-navy hover:border-primary/50 cursor-default"
+                                    >
+                                        {skill}
+                                    </motion.span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+        
+        // Terminal Skills (Simplified and static for performance)
+        const TerminalSkills = () => {
+             return (
+                <section className="py-24 bg-navy relative">
+                    <div className="container mx-auto px-6">
+                        <div className="mb-12 text-center">
+                            <h2 className="text-3xl font-bold text-white mb-2">System Skills</h2>
+                            <p className="text-slate-400">Executing stack initialization...</p>
+                        </div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="max-w-3xl mx-auto bg-[#0d1117] rounded-xl overflow-hidden border border-slate-800 shadow-2xl"
+                        >
+                            <div className="bg-[#161b22] px-4 py-2 flex items-center gap-2 border-b border-slate-800">
+                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span className="ml-2 text-xs text-slate-500 font-mono">urfa@dev-station:~</span>
+                            </div>
+
+                            <div className="p-6 font-mono text-sm min-h-[300px] text-slate-300">
+                                {TERMINAL_LOGS.map((line, index) => (
+                                    <div key={index} className="mb-4">
+                                        <div className="flex gap-2">
+                                            <span className="text-green-400">➜</span>
+                                            <span className="text-cyan-400">~</span>
+                                            <span className="text-white">{line.cmd}</span>
+                                        </div>
+                                        <div className="mt-1 pl-6 text-slate-400 whitespace-pre-line">
+                                            {line.output}
+                                        </div>
+                                    </div>
+                                ))}
+                                <div className="flex gap-2">
+                                    <span className="text-green-400">➜</span>
+                                    <span className="text-cyan-400">~</span>
+                                    <span className="text-white">ls advanced_tools</span>
+                                </div>
+                                <div className="mt-1 pl-6 text-slate-400 whitespace-pre-line">
+                                    [Framer-Motion, WebGL/Three.js, Docker/Kubernetes, CI/CD]
+                                </div>
+                                <div className="flex gap-2 animate-pulse">
+                                    <span className="text-green-400">➜</span>
+                                    <span className="text-cyan-400">~</span>
+                                    <span className="w-2 h-5 bg-slate-500 block"></span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        // 6. Education Timeline
+        const Education = () => {
+            return (
+                <section id="education" className="py-24 bg-gradient-to-b from-navy to-midnight">
+                    <div className="container mx-auto px-6 max-w-4xl">
+                        <h2 className="text-4xl font-bold text-center mb-16">
+                            <span className="text-gradient-blue">Educational</span> Journey
+                        </h2>
+                        
+                        <div className="relative">
+                            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-px bg-slate-800"></div>
+                            
+                            {EDUCATION.map((edu, index) => (
+                                <motion.div 
+                                    key={index}
+                                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.2 }}
+                                    className={`relative flex items-center justify-between md:justify-normal mb-12 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                                >
+                                    <div className="absolute left-[-5px] md:left-1/2 md:-ml-[5px] w-[11px] h-[11px] rounded-full bg-primary shadow-[0_0_10px_#3b82f6] z-10"></div>
+                                    
+                                    <div className="w-full md:w-5/12 ml-6 md:ml-0">
+                                        <div className="glass-panel p-6 rounded-xl hover:border-primary/30 transition-all group">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{edu.degree}</h3>
+                                                <i className={`fas ${edu.icon} text-slate-500`}></i>
+                                            </div>
+                                            <p className="text-primary text-sm font-mono mb-2">{edu.school}</p>
+                                            <p className="text-xs text-slate-400 mb-3 block border-l-2 border-slate-700 pl-2">{edu.year}</p>
+                                            <p className="text-slate-300 text-sm leading-relaxed">{edu.desc}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // 7. Contact Section (Expanded Socials)
+        const Contact = () => {
+            const socials = [
+                { icon: "fa-telegram", name: "Telegram", link: "https://t.me/yourhandle", color: "hover:bg-blue-500" },
+                { icon: "fa-signal-messenger", name: "Signal", link: "#", color: "hover:bg-blue-400" },
+                { icon: "fa-facebook-f", name: "Facebook", link: "https://www.facebook.com/share/17qYgZ7vWM/", color: "hover:bg-blue-600" },
+                { icon: "fa-instagram", name: "Instagram", link: "https://www.instagram.com/urfahasanfattah", color: "hover:bg-pink-600" },
+                { icon: "fa-github", name: "GitHub", link: "https://github.com/urfa-fattah", color: "hover:bg-gray-600" },
+                { icon: "fa-linkedin-in", name: "LinkedIn", link: "#", color: "hover:bg-blue-700" }
+            ];
+
+            return (
+                <section id="contact" className="py-24 relative overflow-hidden">
+                    <div className="container mx-auto px-6 text-center relative z-10">
+                        <div className="glass-panel max-w-4xl mx-auto rounded-3xl p-10 md:p-16 border border-white/5 relative overflow-hidden">
+                            <h2 className="text-4xl font-bold mb-6">Initiate Connection</h2>
+                            <p className="text-slate-400 mb-12 max-w-xl mx-auto">
+                                Drop me a line! I'm ready to discuss innovation and collaboration.
+                            </p>
+
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+                                {socials.map((s, i) => (
+                                    <a key={i} href={s.link} target="_blank" className={`flex flex-col items-center justify-center p-4 rounded-xl bg-white/5 border border-white/5 transition-all duration-300 ${s.color} hover:text-white hover:-translate-y-2 group cursor-pointer`}>
+                                        <i className={`fab ${s.icon} text-2xl mb-2 text-slate-300 group-hover:text-white`}></i>
+                                        <span className="text-xs">{s.name}</span>
+                                    </a>
+                                ))}
+                            </div>
+
+                            <div className="inline-block p-1 rounded-full bg-gradient-to-r from-primary to-cyan">
+                                <a href="mailto:uhf3.1415@gmail.com" className="block px-8 py-3 rounded-full bg-midnight hover:bg-navy transition-colors font-bold tracking-wide">
+                                    <i className="fas fa-envelope mr-2"></i> uhf3.1415@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // --- Main App ---
+        const App = () => {
+            const { scrollYProgress } = useScroll();
+            const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+            return (
+                <div className="antialiased selection:bg-primary selection:text-white">
+                    <CursorBlob />
+                    <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-cyan origin-left z-[100]" style={{ scaleX }} />
+                    <Navbar />
+                    <Hero />
+                    <ProjectSpotlight />
+                    <SkillsFilter />
+                    <TerminalSkills />
+                    <Education />
+                    <Contact />
+                    
+                    <footer className="py-6 text-center text-slate-600 text-sm bg-midnight border-t border-white/5">
+                        <p>© 2025 Urfa Hasan Fattah. Engineered with Precision and React.</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
